@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link href="../dist/css/zui.min.css" rel="stylesheet">-->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery.minicolors.js"></script>
+    <link type="text/css" href="css/jquery.minicolors.css" rel="stylesheet">
+    <style>
+        .theme-authen{
+            /*border: 1px solid red;*/
+            width: 800px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+            overflow: hidden;
+        }
+        div.theme-authen ul li{
+            /*border: 1px solid green;*/
+            margin-bottom: 40px;
+        }
+        div.theme-authen ul+div{
+            /*border: 1px solid yellow;*/
+            float: right;
+            margin-bottom: 80px;
+        }
+        div.theme-authen ul+div input{
+            margin-left: 20px;
+        }
+        div.theme-authen textarea{
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<div class="theme-authen">
+  <ul>
+    <li><h3>
+        关于认证页</h3><span>用户在该页面输入认证信息，认证通过后方能上网。</span>
+    </li>
+    <li><h3>手机登录步骤说明
+    </h3><span>
+      对手机的登录步骤进行说明，用"&lt;br /&gt;"换行。
+    </span><br/><textarea name="cellLoginExplain" rows="3" cols="80">输入手机号码，然后点击【获取密码】按钮，系统将把密码发送到您输入的手机。</textarea>
+    </li>
+    <li><h3>
+      微信登录步骤说明</h3><span>
+      对微信的登录步骤进行说明，用"&lt;br /&gt;"换行。</span><br/><textarea cols="80" rows="3" name="wLoginExplain">
+      1. 先关注本店微信公众号，并回复 wifi；系统将回复登录用户名和密码。&lt;br /&gt;2. 输入以上用户名和密码，然后点击登录，即可上网。</textarea>
+    </li>
+    <!--<li><h3>-->
+      <!--QQ帐号登录步骤说明</h3><span>-->
+      <!--对帐号的登录步骤进行说明，用"&lt;br /&gt;"换行。</span><textarea cols="50" rows="3" name="wLoginExplain">-->
+      <!--请输入QQ用户名和密码。</textarea>-->
+    <!--</li>-->
+    <li><h3>按钮样式
+    </h3><span>
+      对登录等按钮的样式进行设置。
+    </span><br/><label>按钮背景颜色：</label><input type="hidden" id="hidden-input3" class="demo" value="#db913d"><br/><label>
+    按钮字体颜色：</label><input type="hidden" id="hidden-input4" class="demo" value="#666666"/>
+    </li>
+  </ul>
+  <div><input type="button" class="btn" name="confirmTheme-authen" value="保存"/><input type="button" class="btn" name="confirmPreview" value="保存并预览"/><input type="button" class="btn" name="cancelTheme-authen" value="取消"/></div>
+</div>
+<script>
+  //颜色选择器代码
+  $('.demo').each( function() {
+    //
+    // Dear reader, it's actually very easy to initialize MiniColors. For example:
+    //
+    //  $(selector).minicolors();
+    //
+    // The way I've done it below is just for the demo, so don't get confused
+    // by it. Also, data- attributes aren't supported at this time. Again,
+    // they're only used for the purposes of this demo.
+    //
+    $(this).minicolors({
+      control: $(this).attr('data-control') || 'hue',
+      defaultValue: $(this).attr('data-defaultValue') || '',
+      inline: $(this).attr('data-inline') === 'true',
+      letterCase: $(this).attr('data-letterCase') || 'lowercase',
+      opacity: $(this).attr('data-opacity'),
+      position: $(this).attr('data-position') || 'bottom left',
+      change: function(hex, opacity) {
+//        log是获取的颜色值
+        var log;
+        try {
+          log = hex ? hex : 'transparent';
+          if( opacity ) log += ', ' + opacity;
+          console.log(log);
+        } catch(e) {}
+      },
+      theme: 'default'
+    });
+
+  });
+</script>
+</body>
+</html>

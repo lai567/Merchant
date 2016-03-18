@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link href="../dist/css/zui.min.css" rel="stylesheet">-->
+    <!--<link href="../dist/css/zui-theme.css" rel="stylesheet">-->
+    <style>
+        .wireSecurity,.wireSecuritySet{
+            width: 300px;
+            margin: 30px auto;
+            /*border: 1px solid red;*/
+        }
+        .wireSecuritySet{
+            list-style-type: none;
+        }
+        ul.wireSecuritySet li{
+            margin: 10px auto;
+        }
+        div.wireSecurity{
+            text-align: right;
+        }
+        div.wireSecurity input{
+            margin-left: 10px;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+<p class="wireSecurity">无线安全设置</p>
+<ul class="wireSecuritySet">
+  <li>名称：<input type="text" name="SSIDname"/></li>
+  <li>加密：<select name="encryption">
+    <option value="way1">WPA/WPA2混杂</option>
+    <option value="way1">WPA2模式</option>
+    <option value="way1">WPA模式</option>
+    <option value="way1">WEP共享密钥</option>
+    <option value="way1">WEP开放认证</option>
+    <option value="way1">No Encryption</option>
+    </select>
+  </li>
+  <li>算法：<select name="algorithm">
+    <option value="automatic">自动</option>
+    <option value="TKIP">TKIP</option>
+    <option value="CCMP">CCMP(AES)</option>
+  </select>
+  </li>
+  <li>密码：<input type="password" name="SSIDname"/></li>
+</ul>
+<div class="wireSecurity"><input type="button" value="确 定"/><input type="button" value="取 消"/></div>
+
+
+</body>
+</html>

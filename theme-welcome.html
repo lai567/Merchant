@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <!--<link href="../dist/css/zui.min.css" rel="stylesheet">-->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery.minicolors.js"></script>
+    <script src="js/image-file-visible.js"></script>
+    <script src="js/ajaxfileupload.js"></script>
+    <link type="text/css" href="css/jquery.minicolors.css" rel="stylesheet">
+  <style>
+    .theme-welcome{
+      width: 800px;
+      /*border: 1px solid red;*/
+      padding-left: 20px;
+      padding-right: 20px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    div.theme-welcome ul li{
+      /*border: 1px solid green;*/
+      margin-bottom: 40px;
+      padding-right: 20px;
+    }
+    div.theme-welcome ul li:nth-child(2){
+      overflow: hidden;
+    }
+    div.theme-welcome ul li:nth-child(2)>div{
+      width: 200px;
+      height: 200px;
+      border: 1px solid #CCCCCC;
+      float: left;
+      margin-right: 40px;
+    }
+    div.theme-welcome ul li:nth-child(2) input{
+      /*border: 1px solid red;*/
+      width: 65px;
+      float: left;
+    }
+    div.theme-welcome ul+div{
+      /*border: 1px solid yellow;*/
+      float: right;
+    }
+    div.theme-welcome label{
+      font-weight: normal;
+    }
+    div.theme-welcome  img+input,div.theme-welcome ul+div input{
+      /*border: 1px solid cyan;*/
+      margin-left: 20px;
+    }
+    div.theme-welcome ul h4{
+      padding-top: 10px;
+      border-top: 1px solid #CCCCCC;
+    }
+    div.theme-welcome textarea{
+      resize: none;
+    }
+  </style>
+</head>
+<body>
+<div class="theme-welcome">
+  <ul>
+    <li><h3>关于欢迎页</h3><span>
+      未通过认证的用户连接 WiFi 后，打开浏览器访问任意网页都会被强制跳转至该页面，
+      用户只有点击页面上的跳转按钮才能继续。
+    </span></li>
+    <li><h3>欢迎页图片</h3><p>
+      以大图的形式向用户展示商家的品牌形象。文件大小不超过 1MB；格式为 png、jpg、gif；设计师建议的大小为：宽 400 像素，高 400 像素。
+    </p>
+      <div id="themeWelDiv"><img src="http://7xrzmz.com1.z0.glb.clouddn.com/s3.jpg" width="200" height="200"></div><input type="file" id="themeWelChooseImg" name="img"/>
+    </li>
+    <li><h3>欢迎文字</h3><span>
+      文字将自动居中，请用"&lt;br /&gt;"换行。
+    </span><br/><textarea name="copyRightInform" rows="3" cols="80">
+      欢迎光临！&lt;br /&gt; WiFi 已覆盖，您可以免费使用！
+    </textarea></li>
+    <li><h3>跳转按钮</h3><span>
+      设置跳转按钮的样式。
+    </span>
+      <h4>按钮文字</h4>
+      <input type="text" name="welcomeButton" value="马上体验"/>
+      <h4>按钮背景颜色</h4>
+      <label>请选择颜色值：</label><input type="hidden" id="hidden-input1" class="demo" value="#db913d">
+      <h4>按钮字体颜色</h4>
+      <label>请选择颜色值：</label><input type="hidden" id="hidden-input2" class="demo" value="#3bdb56">
+    </li>
+    <li><h3>
+      微信关注指引</h3><span>
+        用户进行认证时，如未关注公众则欢迎页显示微信关注指引，引导用户扫码关注。</span><h4>
+      指引内容</h4><span>
+      文字将自动居中，请用"&lt;br /&gt;"换行。</span><br/><textarea  name="guideContent" rows="3" cols="80">欢迎使用免费 Wi-Fi！&lt;br /&gt;用微信扫一扫我们的二维码即可上网！</textarea>
+    <h4>
+      打开按钮文字
+    </h4><input type="text" name="buttonWord" value="打开微信"/>
+    </li>
+  </ul>
+  <div><input type="button" class="btn" name="confirmTheme-welcome" id="confirmTheme-welcome" onclick="return ajaxFileUpload('theme-welcome');" value="保存"/><input type="button" class="btn" name="confirmPreview" value="保存并预览"/><input type="button" class="btn" name="cancelTheme-welcome" value="取消"/>
+  </div>
+</div>
+<script>
+  //这是颜色选择器的代码
+  $('.demo').each( function() {
+    //
+    // Dear reader, it's actually very easy to initialize MiniColors. For example:
+    //
+    //  $(selector).minicolors();
+    //
+    // The way I've done it below is just for the demo, so don't get confused
+    // by it. Also, data- attributes aren't supported at this time. Again,
+    // they're only used for the purposes of this demo.
+    //
+    $(this).minicolors({
+      control: $(this).attr('data-control') || 'hue',
+      defaultValue: $(this).attr('data-defaultValue') || '',
+      inline: $(this).attr('data-inline') === 'true',
+      letterCase: $(this).attr('data-letterCase') || 'lowercase',
+      opacity: $(this).attr('data-opacity'),
+      position: $(this).attr('data-position') || 'bottom left',
+      change: function(hex, opacity) {
+//        log是获取的颜色值
+        var log;
+        try {
+          log = hex ? hex : 'transparent';
+          if( opacity ) log += ', ' + opacity;
+          console.log(log);
+        } catch(e) {}
+      },
+      theme: 'default'
+    });
+  });
+
+  //这是图片上传及选择图片时显示在div中的代码
+  //  flat是上传的前缀
+  function ajaxFileUpload(flat) {
+    $.post('do_file_upload.php',{
+      dir: "135",
+      flat: flat,
+      imgURL: 'world'
+    }, function (msg) {
+      console.log(msg);
+      $.ajaxFileUpload
+      ({
+        url: "do_file_upload.php", //你处理上传文件的服务端
+        secureuri: false,
+        fileElementId: 'themeWelChooseImg',
+        dataType: 'json',
+        success: function (data) {
+          str = data.file_infor;
+
+          var aa='http://localhost:63342/zui-master/Merchant/'+str;
+          alert(aa);
+//            document.getElementById("comeOn").innerHTML='<img src="'+aa+'" width="150" height="80"/>';
+//            alert( document.getElementById("comeOn").innerHTML);
+        }
+      },"#themeWelDiv","#themeWelChooseImg",200,200);
+
+      return false;
+    });
+  }
+  //图片显示插件
+  $.imageFileVisible({wrapSelector: "#themeWelDiv",
+    fileSelector: "#themeWelChooseImg",
+    width: 200,
+    height: 200
+  });
+
+</script>
+</body>
+</html>

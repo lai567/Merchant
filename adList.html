@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>广告列表</title>
+    <!--<link href="css/zui.min.css" rel="stylesheet">-->
+    <!--<link href="css/zui-theme.css" rel="stylesheet">-->
+  <style>
+    *{
+      margin: 0;
+      padding: 0;
+    }
+    ul.adlist{
+      width: 800px;
+      margin: 0 auto;
+      overflow: hidden;
+      list-style-type: none;
+      border: 1px solid yellow;
+      font-size: 16px;
+      padding-left: 0;
+    }
+    .listStyle{
+      float: left;
+      height: 40px;
+      line-height: 40px;
+      width: 100px;
+      /*border: 1px solid red;*/
+    }
+    div.example{
+      width:800px;
+      margin: 0 auto;
+      /*border: 1px solid blue;*/
+    }
+    div.example h3{
+      width: 800px;
+      margin: 30px auto;
+      text-align: left;
+      /*border: 1px solid red;*/
+    }
+    div.example h3 b{
+      margin-right: 30px;
+    }
+    div.example thead tr th{
+      text-align: center;
+    }
+    div.example table.table.table-bordered{
+      max-width:900px;
+      min-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+
+  </style>
+    <!--[if lt IE 9]>
+    <script src="lib/ieonly/html5shiv.js"></script>
+    <script src="lib/ieonly/respond.js"></script>
+    <script src="lib/ieonly/excanvas.js"></script>
+    <![endif]-->
+</head>
+<body>
+  <div class="example" >
+    <h3><b>您所设置的广告主题如下：</b><input type="button" id="adlist-addtheme" class="btn btn-toolbar" value="添加广告主题"/></h3>
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>编号</th>
+        <th>名称</th>
+        <th>启用状态</th>
+        <th>应用模板</th>
+        <th>预览</th>
+        <th>设置</th>
+        <th>应用路由</th>
+        <th>备注</th>
+        <th>删除</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>01</td>
+        <td>广告主题1</td>
+        <td>已启用</td>
+        <td>模板A</td>
+        <td><a href="javascript:void(0)" onclick="adThemeView()">预览</a></td>
+        <td><a href="javascript:void(0)" onclick="adThemeSet()">设置</a></td>
+        <td></td>
+        <td></td>
+        <td><a href="javascript:">删除</a></td>
+      </tr>
+      <tr>
+        <td>02</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>03</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+<script src="js/jquery-1.11.0.min.js"></script>
+<script>
+  //点击“添加广告主题”
+  $("#adlist-addtheme").on("click",clickADthemeAdd);
+  //点击“预览”
+  function adThemeView(){
+    window.open("mymobile-theme-welcome.html");
+  }
+  //点击“设置”
+  function adThemeSet(){
+    mycontent="themeSet.html";
+    contentLoad();
+  }
+</script>
+</body>
+</html>

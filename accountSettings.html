@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+  <style>
+    .accountSet{
+      width: 800px;
+      height: 800px;
+      /*border: 1px solid rgba(0,0,0,.5);*/
+      margin: 0 auto;
+      /*box-shadow: 0 1px 9px rgba(0,0,0,.1);*/
+      /*-webkit-box-shadow: 0 1px 9px rgba(0,0,0,.1);*/
+      padding: 20px;
+    }
+    div.accountSet li{
+      height: 40px;
+      /*border: 1px solid yellow;*/
+      line-height: 28px;
+    }
+    div.accountSet ul label{
+      width: 90px;
+      /*border: 1px solid orange;*/
+    }
+    div.accountSet ul input{
+      margin-right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="accountSet">
+    <h2>账户信息设置</h2>
+    <ul class="nav">
+      <li><label>账号名：</label><input type="text" id="accountName" name="accountName"/></li>
+      <li><label>所属代理商：</label><span>代理商A</span></li>
+      <li><label>电话：</label><input type="text" id="tel" name="tel"/><input class="btn" type="button" id="modifyTel" value="修改绑定"/></li>
+      <li><label>邮箱：</label><input type="text" id="mail" name="mail"/><input class="btn" type="button" id="modifyMail" value="修改绑定"/></li>
+    </ul>
+  </div>
+</body>
+</html>

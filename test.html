@@ -1,0 +1,85 @@
+
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <script src="js/jquery-1.11.0.min.js"></script>
+  <script src="js/ajaxfileupload.js"></script>
+
+    <style>
+        #mymy{
+            border: 1px solid #CCCCCC;
+        }
+    </style>
+</head>
+<body>
+  <input id="img" type="file" size="45" name="img" class="input">
+
+
+  <button class="button" id="buttonUpload" onclick="return ajaxFileUpload('F');">Upload</button>
+      <!--<input type="text" name="name"/>-->
+      <!--<input type="submit"/>-->
+  <img id="mymy" src=""  class="yd" width="150" height="80"/>
+  <button id="wuwu" onclick="return ajaxFileUpload('S');">so sad</button>
+  <script type="text/javascript">
+//      ee();
+//      function ee(){
+//          $("#wuwu").on("click",function(){
+//              $.get('http://localhost/do_file_upload.php', {name:$("#img").val()}, function(msg){console.log(msg);})
+//          })
+//      }
+      function ajaxFileUpload(flat)
+      {
+          var str;
+          $.post('http://localhost:63342/zui-master/Merchant/do_file_upload.php', {dir:"135", flat:flat}, function(msg){
+
+              console.log(msg);
+              $.ajaxFileUpload
+              (
+                      {
+                          url:"http://localhost:63342/zui-master/Merchant/do_file_upload.php", //你处理上传文件的服务端
+                          secureuri:false,
+                          fileElementId:'img',
+                          dataType: 'json',
+                          success: function (data)
+                          {
+                              str=data.file_infor;
+//                              alert(data.file_infor);
+                              alert(typeof str);
+                              alert(str+"\tplease display quickly,I'm tired T_T");
+//                              $("#mymy").attr("src",str);
+                              var t=Math.random();
+                              document.getElementById('mymy').src=str;
+                              alert($(".yd").attr("src"));
+//            alert(data);
+                          }
+                      }
+              );
+
+
+          })
+
+
+//        var reques=$.ajax({
+//            url:"do_file_upload.php",
+//            method:"POST",
+//            dataType:"html",
+//            data:{imgs:imgsrc}
+////            error:function(data){ alert(data+"error")}
+//        });
+
+//        reques.done(function(msg){
+//            console.log(msg);
+//        });
+//        reques.fail(function(jqXHR,textStatus){
+//            alert(textStatus);
+//        });
+
+
+          return false;
+      }
+
+
+
+  </script>
+</body>
+</html>
